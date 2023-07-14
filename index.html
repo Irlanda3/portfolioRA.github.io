@@ -254,10 +254,11 @@
                 alert("emailjs sent successfully");
 
             })
-            .catch();
+            .catch(error => {
+                console.log("An error occurred while sending the email:", error);
+                alert("Failed to send email. Please try again later.");
+            });
         }
-
-
 
     </script>
 </body>
