@@ -187,20 +187,21 @@
     <section class="contact" id="contact">
         <h2 class="heading">Contact <span>Me</span></h2>
 
-        <form action="#">
+        <form action="#" id = "form">
 
             <div class="input-box">
-                <input type="text" placeholder="Full Name">
-                <input type="email" placeholder="Email Address">
+                <input type="text" placeholder="Full Name" id="sendername">
+                <input type="email" placeholder="Email Address" id="replyto">
             </div>
 
             <div class="input-box">
-                <input type="Number" placeholder="Mobile Number">
-                <input type="text" placeholder="Email Subject">
+                <input type="Number" placeholder="Mobile Number" id="phonenumber">
+                <input type="text" placeholder="Email Subject" id="subject">
             </div>
             
             <textarea name="" id="" cols="30" rows="10" placeholder="Your message"></textarea>
-            <input type="submit" value="Send message" class="btn">
+            <input type="submit" value="Send message" class="btn" id="message" onclick="sendMail()">
+
         </form>
     </section>
 
@@ -226,6 +227,37 @@
 
     <!--custom js  -->
     <script src="script.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
+
+
+    <!-- send form code-->
+    <script>
+        function sendEmail(){
+            (function(){
+                emailjs.init("Kd_gzGb65I1XrAXlm");
+            })();
+
+            var params = {
+                sendername: document.querySelector("#sendername").value,
+                to: document.querySelector("#replyto").value,
+                phone: document.querySelector("#phonenumber").value,
+                subject: document.querySelector("#subject").value,
+                message: document.querySelector("#message").value,
+            };
+
+            var serviceID = "service_5nmtjhv";
+            var templateID = "template_x0cas3r";
+
+            emailjs.send(serviceID, templateID, params)
+            .then( res => {
+                alert("emailjs sent successfully");
+
+            })
+            .catch();
+        }
+
+
+    </script>
 </body>
 </html>
