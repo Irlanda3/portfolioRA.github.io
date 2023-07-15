@@ -200,14 +200,14 @@
             </div>
             
             <textarea name="" id="message" cols="30" rows="10" placeholder="Your message"></textarea>
-            <input type="submit" value="Send message" class="btn"  onclick="sendEmail()">
+            <input type="submit" value="Send message" class="btn"  onclick="sendEmail(event)">
 
         </form>
     </section>
 
 
     <!--footer section-->
-    <footer class="foter">
+    <footer class="footer">
         <div class="footer-text">
             <p>Lorem, ipsum dolor sit</p>
 
@@ -233,18 +233,21 @@
 
     <!-- send form code-->
     <script>
-        function sendEmail(){
+        function sendEmail(e){
+            e.preventDefault();
+
             (function(){
                 emailjs.init("Kd_gzGb65I1XrAXlm");
             })();
 
             var params = {
-                sendername: document.querySelector("#sendername").value,
-                to: document.querySelector("#replyto").value,
-                phone: document.querySelector("#phonenumber").value,
-                subject: document.querySelector("#subject").value,
-                message: document.querySelector("#message").value,
-            };
+                sendername: document.getElementById("sendername").value,
+                reply_to: "reply@gdg.com",//document.getElementById("replyto").value,
+                phone: document.getElementById("phonenumber").value,
+                subject: document.getElementById("subject").value,
+                message: document.getElementById("message").value,
+              };
+              
 
             var serviceID = "service_5nmtjhv";
             var templateID = "template_x0cas3r";
